@@ -3,24 +3,25 @@
 using namespace std;
 
 int main() {
-	Entry* player1 = new Entry();
-	Board* board = new BoardArray();
+    Board* board = new BoardArray();
     char ans;
-    int score;
-	do {
-		cout << "Op: ";
-		cin >> ans;
+    do {
+        cout << "Op: ";
+        cin >> ans;
+        cin.ignore();
         switch (ans) {
-            case 'a':
-        		cout << "Enter name: ";
-                cin.ignore(); 
-        		getline(cin, player1->name);
-        		cout << "Enter college: ";
-        		cin >> player1->college;
-        		cout << "Enter score: ";
-        		cin >> player1->score;
-        		board->add(player1);
+            case 'a': {
+                Entry* player = new Entry();
+                cout << "Enter name: ";
+                getline(cin, player->name);
+                cout << "Enter college: ";
+                getline(cin, player->college);
+                cout << "Enter score: ";
+                cin >> player->score;
+                cin.ignore();
+                board->add(player);
                 break;
+            }
             case 'p':
                 board->print();
                 break;
@@ -30,7 +31,6 @@ int main() {
             default:
                 cout << "Invalid operation" << endl;
         }
-	} while (ans != 'x');
-
-	return 0;
+    } while (ans != 'x');
+    return 0;
 }
